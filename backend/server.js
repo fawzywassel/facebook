@@ -1,27 +1,20 @@
 const express = require("express");
 const cors = require('cors');
-
-
+const {readdirSync} = require('fs')
 
 
 const app = express();
 
 // __________ MIDDLEWARES __________ //
-const corsOptions = {
-  origin:'http://localhost:3000',
-  useSuccessStatus:200
-}
-app.use(cors(corsOptions))
-
-
-
+app.use(cors())
+readdirSync("./routes").map(r=>app.use("/",require('./routes/'+r)))
 
 app.get("/", (req, res) => {
   res.send("welcome from home");
 });
 app.get("/books", (req, res) => {
-  res.send("hahahahahahahhahahaaiidhiagduogauodhguagdigaiduygiuagduagdiu");
+  res.send("test");
 });
 app.listen(8000, () => {
-  console.log("server is lestining...");
+  console.log("server is listening on port 8000 ....");
 });
