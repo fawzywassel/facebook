@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require('cors');
 const {readdirSync} = require('fs')
-
-
+const dotenv = require('dotenv')
+dotenv.config()
 const app = express();
 
 // __________ MIDDLEWARES __________ //
@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
 app.get("/books", (req, res) => {
   res.send("test");
 });
-app.listen(8000, () => {
-  console.log("server is listening on port 8000 ....");
+
+const PORT = process.env.PORT || 8000
+app.listen(PORT, () => {
+  console.log(`server is listening on port ${PORT} ....`);
 });
